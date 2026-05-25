@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">The Anatomy of Manifesting</string>
+    <string name="title_activity_main">The Anatomy of Manifesting</string>
+    <string name="package_name">com.anatomyofmanifesting.app</string>
+    <string name="custom_url_scheme">com.anatomyofmanifesting.app</string>
+</resources>

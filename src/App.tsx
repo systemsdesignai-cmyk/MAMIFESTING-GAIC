@@ -131,8 +131,8 @@ const HomePage = ({ onNavigate }: { onNavigate: (screen: 'definition' | 'workflo
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<'home' | 'definition' | 'workflow'>('home');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 768 : false);
+  const [rightOpen, setRightOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 1024 : false);
   const [editingFolderId, setEditingFolderId] = useState<string | null>(null);
   
   // Independent Info Modal State
