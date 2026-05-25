@@ -1,0 +1,6 @@
+{
+  "name": "The Anatomy of Manifesting",
+  "description": "An interactive digital companion and psychological framework based on the 26-step process of converting inner desires into outer reality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
