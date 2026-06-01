@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  APP_NAME: mamifesting-gaic
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,6 +32,12 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      
       - name: Clear npm cache and remove lock file
         run: |
           npm cache clean --force
@@ -43,26 +52,31 @@ jobs:
       - name: Sync with Android
         run: npx cap sync android
       
-      - name: Build APK
+      - name: Build signed release APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleRelease
           cd ..
+        env:
+          KEYSTORE_PATH: app/release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       
-      - name: Extract version
+      - name: Extract version tag
         id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       
       - name: Rename APK
         run: |
-          mv android/app/build/outputs/apk/debug/app-debug.apk \
-             android/app/build/outputs/apk/debug/app-${{ steps.version.outputs.VERSION }}.apk
+          mv android/app/build/outputs/apk/release/app-release.apk \
+             android/app/build/outputs/apk/release/app-${{ env.APP_NAME }}-${{ steps.version.outputs.VERSION }}.apk
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: android/app/build/outputs/apk/debug/app-*.apk
+          files: android/app/build/outputs/apk/release/app-${{ env.APP_NAME }}-*.apk
           draft: false
           prerelease: false
           generate_release_notes: true
