@@ -130,7 +130,15 @@ const HomePage = ({ onNavigate }: { onNavigate: (screen: 'definition' | 'workflo
 // ==========================================
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<'home' | 'definition' | 'workflow'>('home');
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('manifest-theme') as 'dark' | 'light' | null;
+      if (saved) return saved;
+      return 'dark';
+    }
+    return 'dark';
+  });
+  
   const [leftOpen, setLeftOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 768 : false);
   const [rightOpen, setRightOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 1024 : false);
   const [editingFolderId, setEditingFolderId] = useState<string | null>(null);
@@ -144,26 +152,28 @@ export default function App() {
   const [sessions, setSessions] = useState<Session[]>([]); 
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
 
-  // --- INITIALIZATION ---
+  // --- INITIALIZATION & PERSISTENCE ---
   useEffect(() => {
-    const savedTheme = localStorage.getItem('manifest-theme') as 'dark' | 'light' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
+    // Apply theme on mount and change
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
+    localStorage.setItem('manifest-theme', theme);
+  }, [theme]);
 
+  useEffect(() => {
     const savedFolders = JSON.parse(localStorage.getItem('manifest-folders') || '[]');
     const savedSessions = JSON.parse(localStorage.getItem('manifest-sessions') || '[]');
     
     // Set Default Folders if empty
-    let finalFolders = savedFolders;
     if (savedFolders.length === 0) {
-      finalFolders = [
+      const defaultFolders = [
         { id: 'f-default', name: 'Primary Goals', description: 'Core life visions', order: 0 },
         { id: 'f-secondary', name: 'Aspirational Domains', description: 'Long term horizons', order: 1 }
       ];
-      setFolders(finalFolders);
+      setFolders(defaultFolders);
     } else {
       setFolders(savedFolders);
     }
@@ -185,24 +195,33 @@ export default function App() {
       setSessions([defaultSession]);
       setCurrentSessionId(defaultId);
     }
+
+    // Responsive Sidebar Listener
+    const handleResize = () => {
+      // Auto-collapse sidebars on small screens if they were open from a larger screen
+      if (window.innerWidth < 1024) {
+        setRightOpen(false);
+      }
+      if (window.innerWidth < 768) {
+        setLeftOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // --- SAVE PORTAL DATA TO LOCAL STORAGE ---
+  // --- SAVE DATA TO LOCAL STORAGE ---
   useEffect(() => {
     if (folders.length > 0) {
       localStorage.setItem('manifest-folders', JSON.stringify(folders));
     }
+  }, [folders]);
+
+  useEffect(() => {
     if (sessions.length > 0) {
       localStorage.setItem('manifest-sessions', JSON.stringify(sessions));
     }
-    
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('manifest-theme', theme);
-  }, [folders, sessions, theme]);
+  }, [sessions]);
 
   // --- COMPUTED PROFILE ACTIVE STATES ---
   const activeSession = useMemo(() => {
@@ -451,7 +470,7 @@ export default function App() {
       
       {/* GLOBAL HUD BAR */}
       {(currentScreen === 'home' || currentScreen === 'definition') && (
-        <div className="absolute top-0 w-full p-4 flex justify-between items-center z-50">
+        <div className="absolute top-0 w-full p-4 pt-safe flex justify-between items-center z-50">
           {currentScreen === 'definition' ? (
             <button 
               onClick={handleReturnHome} 
@@ -494,9 +513,9 @@ export default function App() {
             />
           )}
           
-          <aside className={`fixed md:relative z-45 h-full bg-white dark:bg-[#12141c] flex flex-col transition-all duration-300 shrink-0 ${
+          <aside className={`fixed md:relative z-45 h-full bg-white dark:bg-[#12141c] flex flex-col transition-all duration-300 shrink-0 pl-safe pb-safe ${
             leftOpen 
-              ? 'w-[22rem] translate-x-0 border-r border-gray-200 dark:border-gray-800/80 shadow-md md:shadow-none' 
+              ? 'w-[85vw] max-w-[22rem] translate-x-0 border-r border-gray-200 dark:border-gray-800/80 shadow-md md:shadow-none' 
               : 'w-0 -translate-x-full md:translate-x-0 overflow-hidden border-r-0 pointer-events-none opacity-0'
           }`}>
             <div className="p-4 border-b border-gray-150 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/30">
@@ -574,23 +593,23 @@ export default function App() {
                           <button
                             onClick={() => createNewSession(folder.id)}
                             type="button"
-                            className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-500 dark:text-gray-400 cursor-pointer"
+                            className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-500 dark:text-gray-400 cursor-pointer"
                             title="Add Session to Folder"
                           >
-                            <Icons.Plus className="w-3.5 h-3.5" />
+                            <Icons.Plus className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => setEditingFolderId(isEditing ? null : folder.id)}
                             type="button"
-                            className={`p-0.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded cursor-pointer ${isEditing ? 'text-blue-500' : 'text-gray-400'}`}
+                            className={`p-1.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded cursor-pointer ${isEditing ? 'text-blue-500' : 'text-gray-400'}`}
                             title="Edit folder details"
                           >
-                            <span className="text-[10px] leading-none select-none">⚙️</span>
+                            <span className="text-[11px] leading-none select-none">⚙️</span>
                           </button>
                           <button
                             onClick={() => moveFolderUp(folder.id)}
                             type="button"
-                            className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 cursor-pointer text-[9px] leading-none"
+                            className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 cursor-pointer text-[10px] leading-none"
                             title="Order Up"
                           >
                             ▲
@@ -598,7 +617,7 @@ export default function App() {
                           <button
                             onClick={() => moveFolderDown(folder.id)}
                             type="button"
-                            className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 cursor-pointer text-[9px] leading-none"
+                            className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-850 rounded text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 cursor-pointer text-[10px] leading-none"
                             title="Order Down"
                           >
                             ▼
@@ -606,10 +625,10 @@ export default function App() {
                           <button
                             onClick={() => deleteFolder(folder.id)}
                             type="button"
-                            className="p-0.5 hover:bg-red-50 dark:hover:bg-red-900/10 rounded text-red-400 hover:text-red-650 cursor-pointer"
+                            className="p-1.5 hover:bg-red-50 dark:hover:bg-red-900/10 rounded text-red-400 hover:text-red-650 cursor-pointer"
                             title="Delete Folder"
                           >
-                            <Icons.Trash className="w-3.5 h-3.5" />
+                            <Icons.Trash className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
@@ -704,7 +723,7 @@ export default function App() {
                                 <button
                                   type="button"
                                   onClick={(e) => { e.stopPropagation(); moveSessionUp(session.id, folder.id); }}
-                                  className="p-0.5 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-[9px] cursor-pointer"
+                                  className="p-1.5 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-[10px] cursor-pointer"
                                   title="Order Session Up"
                                 >
                                   ▲
@@ -712,7 +731,7 @@ export default function App() {
                                 <button
                                   type="button"
                                   onClick={(e) => { e.stopPropagation(); moveSessionDown(session.id, folder.id); }}
-                                  className="p-0.5 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-[9px] cursor-pointer"
+                                  className="p-1.5 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-[10px] cursor-pointer"
                                   title="Order Session Down"
                                 >
                                   ▼
@@ -720,16 +739,16 @@ export default function App() {
                                 <button 
                                   onClick={(e) => { e.stopPropagation(); togglePin(session.id); }} 
                                   type="button"
-                                  className={`p-1 ${session.isPinned ? 'text-amber-500' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'} cursor-pointer`}
+                                  className={`p-1.5 ${session.isPinned ? 'text-amber-500' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'} cursor-pointer`}
                                 >
-                                  <Icons.Pin filled={session.isPinned} className="w-3.5 h-3.5" />
+                                  <Icons.Pin filled={session.isPinned} className="w-4 h-4" />
                                 </button>
                                 <button 
                                   onClick={(e) => { e.stopPropagation(); deleteSession(session.id); }} 
                                   type="button"
-                                  className="text-red-400 hover:text-red-600 p-1 cursor-pointer"
+                                  className="text-red-400 hover:text-red-600 p-1.5 cursor-pointer"
                                 >
-                                  <Icons.Trash className="w-3.5 h-3.5" />
+                                  <Icons.Trash className="w-4 h-4" />
                                 </button>
                               </div>
                             </div>
@@ -768,7 +787,7 @@ export default function App() {
 
           {/* ================= CENTRE ACTIVE WORKSPACE ================= */}
           <main className="flex-1 flex flex-col relative overflow-hidden bg-gray-50 dark:bg-[#0f1115]">
-            <header className="flex justify-between items-center p-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-30">
+            <header className="flex justify-between items-center p-4 pt-safe bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-30">
               <div className="flex items-center gap-1">
                 {!leftOpen && (
                   <button 
@@ -845,7 +864,7 @@ export default function App() {
             </div>
 
             {/* Bottom transition actions bar */}
-            <footer className="absolute bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#12141c]/90 backdrop-blur-md border-t border-gray-150 dark:border-gray-800 flex justify-between items-center z-30 shadow-lg">
+            <footer className="absolute bottom-0 left-0 right-0 p-4 pb-safe bg-white/90 dark:bg-[#12141c]/90 backdrop-blur-md border-t border-gray-150 dark:border-gray-800 flex justify-between items-center z-30 shadow-lg">
               <button 
                 onClick={() => setStepIdx(activeStep - 1)} 
                 disabled={activeStep === 0} 
@@ -874,9 +893,9 @@ export default function App() {
             />
           )}
           
-          <aside className={`fixed right-0 md:relative z-45 h-full bg-white dark:bg-[#12141c] flex flex-col transition-all duration-300 shrink-0 ${
+          <aside className={`fixed right-0 md:relative z-45 h-full bg-white dark:bg-[#12141c] flex flex-col transition-all duration-300 shrink-0 pr-safe pb-safe ${
             rightOpen 
-              ? 'w-[22rem] lg:w-[24rem] translate-x-0 border-l border-gray-200 dark:border-gray-800/80 shadow-md lg:shadow-none' 
+              ? 'w-[85vw] max-w-[22rem] lg:max-w-[24rem] translate-x-0 border-l border-gray-200 dark:border-gray-800/80 shadow-md lg:shadow-none' 
               : 'w-0 translate-x-full md:translate-x-0 overflow-hidden border-l-0 pointer-events-none opacity-0'
           }`}>
             <div className="p-4 border-b border-gray-150 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/30">

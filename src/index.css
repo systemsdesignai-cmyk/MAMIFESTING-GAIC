@@ -24,10 +24,48 @@
 /* Base style resets and customizations */
 body {
   font-family: var(--font-sans);
+  /* Handle mobile viewport height issues */
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
+}
+
+/* Safe Area Insets for Capacitor/Mobile */
+:root {
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+}
+
+.pt-safe {
+  padding-top: var(--sat);
+}
+
+.pb-safe {
+  padding-bottom: var(--sab);
+}
+
+.pl-safe {
+  padding-left: var(--sal);
+}
+
+.pr-safe {
+  padding-right: var(--sar);
+}
+
+.mt-safe {
+  margin-top: var(--sat);
+}
+
+.mb-safe {
+  margin-bottom: var(--sab);
 }
 
 /* Custom scrollbars for a highly polished dark-theme aesthetics */
