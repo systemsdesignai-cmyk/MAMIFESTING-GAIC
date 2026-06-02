@@ -24,16 +24,16 @@ const IntroSlide = () => (
       <div className="absolute inset-0 bg-fuchsia-500 blur-[80px] opacity-25 rounded-full animate-pulse"></div>
       <Sparkles className="w-20 h-20 text-amber-300 relative z-10" />
     </div>
-    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-200 via-fuchsia-300 to-indigo-300 bg-clip-text text-transparent drop-shadow-sm">
+    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-amber-500 via-fuchsia-600 to-indigo-600 dark:from-amber-200 dark:via-fuchsia-300 dark:to-indigo-300 bg-clip-text text-transparent drop-shadow-sm">
       Manifesting
     </h1>
-    <p className="text-lg md:text-2xl text-indigo-100 font-light leading-relaxed mb-8">
-      The intentional process of aligning one's <span className="font-semibold text-white">thoughts, emotions, beliefs,</span> and <span className="font-semibold text-white">actions</span> with a desired outcome.
+    <p className="text-lg md:text-2xl text-indigo-900 dark:text-indigo-100 font-light leading-relaxed mb-8">
+      The intentional process of aligning one's <span className="font-bold text-indigo-700 dark:text-white">thoughts, emotions, beliefs,</span> and <span className="font-bold text-indigo-700 dark:text-white">actions</span> with a desired outcome.
     </p>
-    <div className="animate-bounce mt-6 bg-white/10 p-3 rounded-full backdrop-blur-sm border border-white/20">
-      <ArrowRight className="w-5 h-5 text-white" />
+    <div className="animate-bounce mt-6 bg-indigo-100 dark:bg-white/10 p-3 rounded-full backdrop-blur-sm border border-indigo-200 dark:border-white/20">
+      <ArrowRight className="w-5 h-5 text-indigo-600 dark:text-white" />
     </div>
-    <p className="mt-4 text-xs text-indigo-300 uppercase tracking-widest font-mono">Swipe or use arrows to navigate</p>
+    <p className="mt-4 text-xs text-indigo-500 dark:text-indigo-300 uppercase tracking-widest font-mono">Swipe or use arrows to navigate</p>
   </div>
 );
 
@@ -43,29 +43,29 @@ const IntentionSlide = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl px-6 gap-8 w-full">
       <div className="flex-1 space-y-6 text-left">
-        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200 mb-2">
-          <Target className="w-4 h-4 text-amber-300" />
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200 mb-2">
+          <Target className="w-4 h-4 text-amber-600 dark:text-amber-300" />
           <span className="font-semibold tracking-wide uppercase text-xs font-mono">Pillar 1</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white">Intention</h2>
-        <p className="text-base md:text-lg text-indigo-100/95 leading-relaxed">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Intention</h2>
+        <p className="text-base md:text-lg text-gray-700 dark:text-indigo-100/95 leading-relaxed">
           Manifesting begins with absolute clarity of direction. An intention is not merely a wish — it is a consciously chosen target.
         </p>
-        <div className="p-5 bg-white/5 border-l-4 border-amber-400 rounded-r-xl backdrop-blur-sm">
-          <p className="text-lg md:text-xl font-medium text-amber-100 italic">
+        <div className="p-5 bg-amber-50 dark:bg-white/5 border-l-4 border-amber-500 rounded-r-xl backdrop-blur-sm">
+          <p className="text-lg md:text-xl font-medium text-amber-900 dark:text-amber-100 italic">
             "This is the reality I am actively choosing to construct."
           </p>
         </div>
-        <p className="text-sm md:text-base text-indigo-200">
+        <p className="text-sm md:text-base text-gray-600 dark:text-indigo-200">
           Without intention, desire is diffuse. With direction, the nervous system prioritizes perception, memory, and physical behavior around a real possibility.
         </p>
       </div>
 
-      <div className="flex-1 w-full bg-slate-900/60 p-6 rounded-2xl border border-white/10 backdrop-blur-md shadow-xl text-left">
-        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-          <Icons.Eye className="w-5 h-5 text-indigo-400" /> Comparative Diagnostics
+      <div className="flex-1 w-full bg-white dark:bg-slate-900/60 p-6 rounded-2xl border border-gray-200 dark:border-white/10 backdrop-blur-md shadow-xl text-left">
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <Icons.Eye className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Comparative Diagnostics
         </h3>
-        <p className="text-xs text-indigo-300 uppercase tracking-wider mb-6 font-mono">Tap a variant to preview focus status</p>
+        <p className="text-xs text-indigo-500 dark:text-indigo-300 uppercase tracking-wider mb-6 font-mono">Tap a variant to preview focus status</p>
         
         <div className="space-y-4">
           <button 
@@ -73,12 +73,12 @@ const IntentionSlide = () => {
             onClick={() => setExampleState(1)}
             className={`w-full text-left p-5 rounded-xl transition-all duration-300 cursor-pointer ${
               exampleState === 1 
-                ? 'bg-red-500/10 border-red-500/40 shadow-inner' 
-                : 'bg-white/5 border-white/5 hover:bg-white/10'
+                ? 'bg-red-100 dark:bg-red-500/10 border-red-500/40 shadow-inner' 
+                : 'bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-white/10'
             } border`}
           >
-            <div className="text-xs text-red-300 font-bold mb-1 uppercase tracking-wide">Variant A: The Blurred Wish</div>
-            <div className={`text-base font-semibold ${exampleState === 1 ? 'text-white' : 'text-white/40 blur-[1px]'}`}>"I just want to be successful."</div>
+            <div className="text-xs text-red-600 dark:text-red-300 font-bold mb-1 uppercase tracking-wide">Variant A: The Blurred Wish</div>
+            <div className={`text-base font-semibold ${exampleState === 1 ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/40 blur-[1px]'}`}>"I just want to be successful."</div>
           </button>
 
           <button 
@@ -86,12 +86,12 @@ const IntentionSlide = () => {
             onClick={() => setExampleState(2)}
             className={`w-full text-left p-5 rounded-xl transition-all duration-300 cursor-pointer ${
               exampleState === 2 
-                ? 'bg-emerald-500/10 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]' 
-                : 'bg-white/5 border-white/5 hover:bg-white/10'
+                ? 'bg-emerald-100 dark:bg-emerald-500/10 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]' 
+                : 'bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-white/10'
             } border`}
           >
-            <div className="text-xs text-emerald-300 font-bold mb-1 uppercase tracking-wide">Variant B: Defined Intention</div>
-            <div className={`text-base font-semibold ${exampleState === 2 ? 'text-white' : 'text-white/40 blur-[1px]'}`}>"I want to build a self-sustaining business that creates high value."</div>
+            <div className="text-xs text-emerald-600 dark:text-emerald-300 font-bold mb-1 uppercase tracking-wide">Variant B: Defined Intention</div>
+            <div className={`text-base font-semibold ${exampleState === 2 ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/40 blur-[1px]'}`}>"I want to build a self-sustaining business that creates high value."</div>
           </button>
         </div>
       </div>
@@ -111,13 +111,13 @@ const BeliefSlide = () => {
 
   return (
     <div className="flex flex-col items-center justify-center max-w-4xl px-6 w-full text-center">
-      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200 mb-6">
-        <Sparkles className="w-4 h-4 text-amber-300" />
+      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200 mb-6">
+        <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-300" />
         <span className="font-semibold tracking-wide uppercase text-xs font-mono">Pillar 2</span>
       </div>
-      <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Belief Alignment</h2>
-      <p className="text-sm md:text-lg text-indigo-100 max-w-2xl leading-relaxed mb-8">
-        Belief is the cognitive acceptance of possibility. Physical behavior follows <span className="text-amber-300 font-semibold underline decoration-white/30 underline-offset-4">subjective rules</span> more than objective parameters.
+      <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">Belief Alignment</h2>
+      <p className="text-sm md:text-lg text-gray-700 dark:text-indigo-100 max-w-2xl leading-relaxed mb-8">
+        Belief is the cognitive acceptance of possibility. Physical behavior follows <span className="text-amber-600 dark:text-amber-300 font-bold underline decoration-gray-400 dark:decoration-white/30 underline-offset-4">subjective rules</span> more than objective parameters.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-3xl text-left">
@@ -128,15 +128,15 @@ const BeliefSlide = () => {
             onMouseLeave={() => setActiveBelief(null)}
             onClick={() => setActiveBelief(activeBelief === b.id ? null : b.id)}
             className={`cursor-pointer p-5 rounded-xl border transition-all duration-300 flex items-center gap-4 overflow-hidden relative
-              ${activeBelief === b.id ? 'bg-indigo-950/40 border-indigo-500/40 shadow-md' : 'bg-white/5 border-white/5 hover:bg-white/10'}
+              ${activeBelief === b.id ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-500/40 shadow-md' : 'bg-white dark:bg-white/5 border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/10'}
             `}
           >
-            <div className={`p-3 rounded-xl transition-colors ${activeBelief === b.id ? 'bg-indigo-500 text-white' : 'bg-white/10 text-indigo-300'}`}>
+            <div className={`p-3 rounded-xl transition-colors ${activeBelief === b.id ? 'bg-indigo-600 text-white' : 'bg-indigo-100 dark:bg-white/10 text-indigo-600 dark:text-indigo-300'}`}>
               {b.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-base font-bold text-white mb-0.5">{b.title}</h4>
-              <p className={`text-xs text-indigo-200 transition-all duration-300 ${activeBelief === b.id ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-2 h-0 overflow-hidden'}`}>
+              <h4 className="text-base font-bold text-gray-900 dark:text-white mb-0.5">{b.title}</h4>
+              <p className={`text-xs text-gray-600 dark:text-indigo-200 transition-all duration-300 ${activeBelief === b.id ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-2 h-0 overflow-hidden'}`}>
                 {b.desc}
               </p>
             </div>
@@ -144,7 +144,7 @@ const BeliefSlide = () => {
         ))}
       </div>
       
-      <p className="mt-8 text-xs md:text-sm text-indigo-300 italic max-w-2xl bg-black/20 p-4 rounded-xl border border-white/5">
+      <p className="mt-8 text-xs md:text-sm text-indigo-700 dark:text-indigo-300 italic max-w-2xl bg-indigo-50 dark:bg-black/20 p-4 rounded-xl border border-indigo-100 dark:border-white/5">
         "Conscious desires that contradict subconscious rules create biological and focus sabotage."
       </p>
     </div>
@@ -159,28 +159,28 @@ const EmotionSlide = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl px-6 gap-10 w-full text-left">
       <div className="flex-1 space-y-6">
-        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200">
-          <Heart className="w-4 h-4 text-amber-300" />
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200">
+          <Heart className="w-4 h-4 text-amber-600 dark:text-amber-300" />
           <span className="font-semibold tracking-wide uppercase text-xs font-mono">Pillar 3</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white">Emotional Priming</h2>
-        <p className="text-base md:text-lg text-indigo-100 leading-relaxed">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Emotional Priming</h2>
+        <p className="text-base md:text-lg text-gray-700 dark:text-indigo-100 leading-relaxed">
           The subconscious records futures that have emotional charge. Emotions act as cognitive reinforcement indicators that write focus pathways.
         </p>
         <div className="grid grid-cols-2 gap-4 text-center text-sm">
-          <div className="bg-red-950/20 p-4 rounded-xl border border-red-500/20">
-            <span className="block text-red-400 font-bold mb-1">Fear Baseline</span>
-            <span className="text-white/70 text-xs">Constricts attention.</span>
+          <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-xl border border-red-200 dark:border-red-500/20">
+            <span className="block text-red-700 dark:text-red-400 font-bold mb-1">Fear Baseline</span>
+            <span className="text-gray-500 dark:text-white/70 text-xs">Constricts attention.</span>
           </div>
-          <div className="bg-emerald-950/20 p-4 rounded-xl border border-emerald-500/20">
-            <span className="block text-emerald-400 font-bold mb-1">Aligned State</span>
-            <span className="text-white/70 text-xs">Magnifies priority.</span>
+          <div className="bg-emerald-50 dark:bg-emerald-950/20 p-4 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+            <span className="block text-emerald-700 dark:text-emerald-400 font-bold mb-1">Aligned State</span>
+            <span className="text-gray-500 dark:text-white/70 text-xs">Magnifies priority.</span>
           </div>
         </div>
       </div>
 
       <div className="flex-1 w-full flex flex-col items-center justify-center">
-        <h3 className="text-xs font-bold text-indigo-300 mb-6 uppercase tracking-widest font-mono">Aesthetic Aligners</h3>
+        <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-300 mb-6 uppercase tracking-widest font-mono">Aesthetic Aligners</h3>
         <div className="flex flex-wrap justify-center gap-3 max-w-md">
           {practices.map((practice, idx) => (
             <div 
@@ -188,13 +188,13 @@ const EmotionSlide = () => {
               className="relative cursor-pointer group"
             >
               <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-r from-pink-500/20 to-amber-500/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative px-5 py-3 bg-indigo-950/40 border border-indigo-400/20 rounded-full text-xs text-indigo-100 group-hover:text-white transition-all font-semibold hover:-translate-y-0.5">
+              <div className="relative px-5 py-3 bg-white dark:bg-indigo-950/40 border border-gray-200 dark:border-indigo-400/20 rounded-full text-xs text-indigo-700 dark:text-indigo-100 group-hover:text-indigo-900 dark:group-hover:text-white transition-all font-bold hover:-translate-y-0.5 shadow-sm">
                 {practice}
               </div>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-center text-xs text-indigo-400 max-w-xs">
+        <p className="mt-6 text-center text-xs text-indigo-500 dark:text-indigo-400 max-w-xs">
           Minimize the energetic contrast between what you desire and what you rehearse.
         </p>
       </div>
@@ -217,12 +217,12 @@ const ActionSlide = () => {
 
   return (
     <div className="flex flex-col items-center justify-center max-w-5xl px-6 w-full text-center">
-      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200 mb-6">
-        <Activity className="w-4 h-4 text-amber-300" />
+      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200 mb-6">
+        <Activity className="w-4 h-4 text-amber-600 dark:text-amber-300" />
         <span className="font-semibold tracking-wide uppercase text-xs font-mono">Pillar 4</span>
       </div>
-      <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Embodied Action</h2>
-      <p className="text-sm md:text-lg text-indigo-100 max-w-2xl mb-8">
+      <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">Embodied Action</h2>
+      <p className="text-sm md:text-lg text-gray-700 dark:text-indigo-100 max-w-2xl mb-8">
         Desire without action is inert. Real-world change occurs through structural alignment of thought, standard baseline behaviors, and bold opportunity responses.
       </p>
 
@@ -243,28 +243,28 @@ const ActionSlide = () => {
             >
               {/* Front Side */}
               <div 
-                className="absolute inset-0 bg-slate-900 border border-white/10 rounded-2xl flex flex-col items-center justify-center p-5 shadow-lg group-hover:border-indigo-400/40"
+                className="absolute inset-0 bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 rounded-2xl flex flex-col items-center justify-center p-5 shadow-lg group-hover:border-indigo-400/40"
                 style={{ backfaceVisibility: 'hidden' }}
               >
-                <div className="p-3 bg-white/5 rounded-full text-indigo-300 mb-3 group-hover:scale-105 transition-transform">
+                <div className="p-3 bg-indigo-50 dark:bg-white/5 rounded-full text-indigo-600 dark:text-indigo-300 mb-3 group-hover:scale-105 transition-transform">
                   {item.iconD}
                 </div>
-                <h4 className="text-xs text-white/50 uppercase tracking-widest font-mono">Vision Goal</h4>
-                <div className="text-base font-bold text-amber-300 mt-1">{item.desire}</div>
-                <p className="text-[10px] text-white/30 tracking-widest uppercase mt-4">Tap to view Action</p>
+                <h4 className="text-xs text-gray-400 dark:text-white/50 uppercase tracking-widest font-mono">Vision Goal</h4>
+                <div className="text-base font-bold text-amber-600 dark:text-amber-300 mt-1">{item.desire}</div>
+                <p className="text-[10px] text-gray-400 dark:text-white/30 tracking-widest uppercase mt-4">Tap to view Action</p>
               </div>
 
               {/* Back Side */}
               <div 
-                className="absolute inset-0 bg-emerald-950 border border-emerald-500/30 rounded-2xl flex flex-col items-center justify-center p-5 shadow-lg"
+                className="absolute inset-0 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-500/30 rounded-2xl flex flex-col items-center justify-center p-5 shadow-lg"
                 style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
               >
-                <div className="p-3 bg-white/10 rounded-full text-emerald-350 mb-3">
+                <div className="p-3 bg-white/10 rounded-full text-emerald-700 dark:text-emerald-350 mb-3">
                   {item.iconA}
                 </div>
-                <h4 className="text-xs text-emerald-400/60 uppercase tracking-widest font-mono">Aligned Action</h4>
-                <div className="text-base font-bold text-emerald-300 text-center mt-1">{item.action}</div>
-                <p className="text-[10px] text-emerald-400/50 tracking-widest uppercase mt-4">Tap to spin back</p>
+                <h4 className="text-xs text-emerald-700 dark:text-emerald-400/60 uppercase tracking-widest font-mono">Aligned Action</h4>
+                <div className="text-base font-bold text-emerald-800 dark:text-emerald-300 text-center mt-1">{item.action}</div>
+                <p className="text-[10px] text-emerald-700/50 dark:text-emerald-400/50 tracking-widest uppercase mt-4">Tap to spin back</p>
               </div>
             </div>
           </div>
@@ -286,32 +286,32 @@ const SummarySlide = () => {
 
   return (
     <div className="flex flex-col items-center justify-center max-w-4xl px-6 w-full text-center">
-      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200 mb-6">
-        <CheckCircle className="w-4 h-4 text-amber-300" />
+      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200 mb-6">
+        <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-300" />
         <span className="font-semibold tracking-wide uppercase text-xs font-mono">Synthesis</span>
       </div>
-      <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-8">Structural Formula</h2>
+      <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-8">Structural Formula</h2>
 
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-lg sm:text-2xl font-bold mb-10">
-        <span className={`transition-all duration-700 ${activeStage >= 0 ? 'text-amber-300 opacity-100' : 'opacity-20'}`}>Intention</span>
-        <span className="text-white/30">+</span>
-        <span className={`transition-all duration-700 ${activeStage >= 1 ? 'text-indigo-300 opacity-100' : 'opacity-20'}`}>Belief</span>
-        <span className="text-white/30">+</span>
-        <span className={`transition-all duration-700 ${activeStage >= 2 ? 'text-pink-300 opacity-100' : 'opacity-20'}`}>Emotion</span>
-        <span className="text-white/30">+</span>
-        <span className={`transition-all duration-700 ${activeStage >= 3 ? 'text-emerald-300 opacity-100' : 'opacity-20'}`}>Action</span>
-        <span className="text-white/20">=</span>
+        <span className={`transition-all duration-700 ${activeStage >= 0 ? 'text-amber-600 dark:text-amber-300 opacity-100' : 'opacity-20'}`}>Intention</span>
+        <span className="text-gray-300 dark:text-white/30">+</span>
+        <span className={`transition-all duration-700 ${activeStage >= 1 ? 'text-indigo-600 dark:text-indigo-300 opacity-100' : 'opacity-20'}`}>Belief</span>
+        <span className="text-gray-300 dark:text-white/30">+</span>
+        <span className={`transition-all duration-700 ${activeStage >= 2 ? 'text-pink-600 dark:text-pink-300 opacity-100' : 'opacity-20'}`}>Emotion</span>
+        <span className="text-gray-300 dark:text-white/30">+</span>
+        <span className={`transition-all duration-700 ${activeStage >= 3 ? 'text-emerald-600 dark:text-emerald-300 opacity-100' : 'opacity-20'}`}>Action</span>
+        <span className="text-gray-300 dark:text-white/20">=</span>
         <span className={`transition-all duration-700 font-mono text-xs px-4 py-1.5 border rounded-full ${
           activeStage >= 4 
-            ? 'bg-white/10 text-white border-white/25 shadow-md' 
-            : 'text-white/20 border-white/5'
+            ? 'bg-indigo-100 dark:bg-white/10 text-indigo-900 dark:text-white border-indigo-300 dark:border-white/25 shadow-md' 
+            : 'text-gray-300 dark:text-white/20 border-gray-100 dark:border-white/5'
         }`}>Reality Shift</span>
       </div>
 
       <div className={`transition-all duration-700 ${activeStage >= 4 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="bg-gradient-to-r from-indigo-950/40 via-purple-950/40 to-indigo-950/40 p-6 md:p-8 rounded-2xl border border-white/10 backdrop-blur-xl shadow-xl relative overflow-hidden">
-          <p className="text-base md:text-lg text-white font-medium leading-relaxed max-w-xl mx-auto">
-            Manifesting is the <span className="text-amber-300 font-semibold">conscious alignment</span> of perception, neurological filters, and intentional activities: making desired visions physical reality.
+        <div className="bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50 dark:from-indigo-950/40 dark:via-purple-950/40 dark:to-indigo-950/40 p-6 md:p-8 rounded-2xl border border-indigo-100 dark:border-white/10 backdrop-blur-xl shadow-xl relative overflow-hidden">
+          <p className="text-base md:text-lg text-gray-900 dark:text-white font-medium leading-relaxed max-w-xl mx-auto">
+            Manifesting is the <span className="text-amber-600 dark:text-amber-300 font-bold">conscious alignment</span> of perception, neurological filters, and intentional activities: making desired visions physical reality.
           </p>
         </div>
       </div>
@@ -321,34 +321,34 @@ const SummarySlide = () => {
 
 const EtymologySlide = () => (
   <div className="flex flex-col items-center justify-center max-w-4xl px-6 w-full text-center">
-    <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/25 border border-indigo-400/30 text-indigo-200 mb-6">
-      <BookOpen className="w-4 h-4 text-amber-300" />
+    <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-500/25 border border-indigo-200 dark:border-indigo-400/30 text-indigo-700 dark:text-indigo-200 mb-6">
+      <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-300" />
       <span className="font-semibold tracking-wide uppercase text-xs font-mono">Origins</span>
     </div>
     
-    <div className="bg-[#101224]/90 p-8 md:p-12 rounded-3xl border border-indigo-500/25 shadow-xl select-none relative w-full max-w-2xl">
-      <h3 className="text-4xl md:text-5xl font-extrabold text-amber-100 italic">manifestus</h3>
-      <p className="text-indigo-400 text-xs uppercase tracking-widest mt-1 font-semibold font-mono">( Latin Root )</p>
+    <div className="bg-white dark:bg-[#101224]/90 p-8 md:p-12 rounded-3xl border border-indigo-200 dark:border-indigo-500/25 shadow-xl select-none relative w-full max-w-2xl">
+      <h3 className="text-4xl md:text-5xl font-extrabold text-amber-600 dark:text-amber-100 italic">manifestus</h3>
+      <p className="text-indigo-500 dark:text-indigo-400 text-xs uppercase tracking-widest mt-1 font-bold font-mono">( Latin Root )</p>
       
       <div className="space-y-4 text-left max-w-lg mx-auto mt-8 text-sm md:text-base leading-relaxed">
         <div className="flex gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 shrink-0"></div>
-          <p className="text-indigo-150">
-            Implies <span className="text-white font-semibold">clear, visible, and observable</span> to standard senses.
+          <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0"></div>
+          <p className="text-gray-800 dark:text-indigo-150">
+            Implies <span className="text-gray-900 dark:text-white font-bold">clear, visible, and observable</span> to standard senses.
           </p>
         </div>
         
         <div className="flex gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 shrink-0"></div>
-          <p className="text-indigo-150">
+          <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0"></div>
+          <p className="text-gray-800 dark:text-indigo-150">
             Originally, to "manifest" meant to make something visible that was previously hidden or abstract.
           </p>
         </div>
 
         <div className="flex gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 mt-2 shrink-0"></div>
-          <p className="text-indigo-150">
-            Now describes the psychological bridge connecting <span className="text-white font-semibold underline decoration-indigo-400 underline-offset-4">internal blueprint into physical manifestation</span>.
+          <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 mt-2 shrink-0"></div>
+          <p className="text-gray-800 dark:text-indigo-150">
+            Now describes the psychological bridge connecting <span className="text-gray-900 dark:text-white font-bold underline decoration-indigo-300 dark:decoration-indigo-400 underline-offset-4">internal blueprint into physical manifestation</span>.
           </p>
         </div>
       </div>
@@ -382,7 +382,7 @@ export const DefinitionTool = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 bg-[#0B0F19] text-white overflow-hidden font-sans select-none flex flex-col items-center justify-center">
+    <div className="absolute inset-0 bg-white dark:bg-[#0B0F19] text-gray-900 dark:text-white overflow-hidden font-sans select-none flex flex-col items-center justify-center">
       {/* Visual background elements */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
         <div className="absolute top-0 left-[-10%] w-[35%] h-[35%] bg-indigo-600/10 rounded-full blur-[100px]"></div>
@@ -397,15 +397,15 @@ export const DefinitionTool = () => {
 
       {/* Control Navigation bars */}
       <div className="absolute bottom-6 left-0 right-0 flex flex-col items-center justify-center gap-5 z-40 pointer-events-none">
-        <div className="flex gap-2.5 pointer-events-auto bg-black/40 p-2.5 rounded-full backdrop-blur-md border border-white/10 shadow-lg">
+        <div className="flex gap-2.5 pointer-events-auto bg-black/5 dark:bg-black/40 p-2.5 rounded-full backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-lg">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 currentSlide === idx 
-                  ? 'w-6 bg-amber-400' 
-                  : 'w-2 bg-white/20 hover:bg-white/40'
+                  ? 'w-6 bg-amber-500' 
+                  : 'w-2 bg-gray-300 dark:bg-white/20 hover:bg-gray-400 dark:hover:bg-white/40'
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
@@ -417,7 +417,7 @@ export const DefinitionTool = () => {
         onClick={prevSlide}
         disabled={currentSlide === 0}
         type="button"
-        className={`hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-slate-900/40 hover:bg-white/10 backdrop-blur-sm border border-white/10 transition-all text-white cursor-pointer ${currentSlide === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/40 dark:bg-slate-900/40 hover:bg-gray-100 dark:hover:bg-white/10 backdrop-blur-sm border border-gray-200 dark:border-white/10 transition-all text-gray-900 dark:text-white cursor-pointer ${currentSlide === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
@@ -426,7 +426,7 @@ export const DefinitionTool = () => {
         onClick={nextSlide}
         disabled={currentSlide === slides.length - 1}
         type="button"
-        className={`hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-slate-900/40 hover:bg-white/10 backdrop-blur-sm border border-white/10 transition-all text-white cursor-pointer ${currentSlide === slides.length - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/40 dark:bg-slate-900/40 hover:bg-gray-100 dark:hover:bg-white/10 backdrop-blur-sm border border-gray-200 dark:border-white/10 transition-all text-gray-900 dark:text-white cursor-pointer ${currentSlide === slides.length - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
         <ChevronRight className="w-6 h-6" />
       </button>

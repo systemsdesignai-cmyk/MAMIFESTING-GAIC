@@ -68,6 +68,15 @@ h1, h2, h3, h4, .font-display {
   margin-bottom: var(--sab);
 }
 
+/* Scrollbar Utility */
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Custom scrollbars for a highly polished dark-theme aesthetics */
 ::-webkit-scrollbar {
   width: 8px;
